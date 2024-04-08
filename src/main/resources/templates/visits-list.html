@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <title>Visits List</title>
+</head>
+<body>
+    <h1>Visits List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Visit Date & Time</th>
+                <th>Purpose</th>
+                Other columns
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="visits : ${visits-}">
+                <td th:text="${visit.id}">ID</td>
+                <td th:text="${visit.visitDateTime}">Visit Date & Time</td>
+                <td th:text="${visit.purpose}">Purpose</td>
+                Other columns
+            </tr>
+        </tbody>
+    </table>
+    
+  
+    <form th:action="@{/saveVisit}" method="post">
+    
+        <label for="visitDateTime">Visit Date & Time:</label>
+        <input type="datetime-local" id="visitDateTime" th:field="*{visitDateTime}" />
+        
+        <label for="purpose">Purpose:</label>
+        <input type="text" id="purpose" th:field="*{purpose}" />
+        
+        Other input fields
+        <button type="submit">Save Visit</button>
+    </form>
+</body>
+</html> 

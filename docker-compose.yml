@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  mysql-db:
+    image: mysql:8
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: visits_clinic_db
+    ports:
+      - 3307:3306
+    restart: always
+  springboot-container:
+    #build: .
+    image: mypet-spring-boot:v1
+    container_name: springboot-container 
+    depends_on:
+      - mysql-db
+    ports:
+      - 9090:8082
+    restart: always
