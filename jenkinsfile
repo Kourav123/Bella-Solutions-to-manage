@@ -17,6 +17,8 @@ pipeline {
             steps{
                 sh "mvn clean"
                 sh "mvn package"
+               // Build Docker image
+                sh "docker build -t mypet-spring-boot:v1 ."
             }
         }
         stage("run the docker containers"){
